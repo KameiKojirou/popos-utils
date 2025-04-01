@@ -15,23 +15,25 @@ import (
 // bunCmd represents the bun command
 var bunCmd = &cobra.Command{
 	Use:   "bun",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "bun management",
+	Long: `
+		bun management commands to install, upgrade, and uninstall bun
+		EXAMPLE USAGE:
+		popos-utils bun --install
+		popos-utils bun --upgrade
+		popos-utils bun --uninstall
+	`,
 	Run: func(cmd *cobra.Command, args []string) {
 		log.Info(lipgloss.NewStyle().Bold(true).Render(fmt.Sprintf("Is Bun installed: %v", core.BunInstallCheck())))
 		if cmd.Flags().Changed("install") {
-			log.Info("Installing Bun...")
+			core.InstallBun()
 		} else if cmd.Flags().Changed("upgrade") {
-			log.Info("Upgrading Bun...")
+			core.BunUpgrade()
 		} else if cmd.Flags().Changed("uninstall") {
-			log.Info("Uninstalling Bun...")
+			core.BunUninstall()
 		}
 	},
+
 }
 
 func init() {
@@ -48,4 +50,5 @@ func init() {
 	// bunCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 
 	bunCmd.PersistentFlags().BoolP("install", "i", false, "Install bun")
+	bunCmd.PersistentFlags().BoolP("upgrade", "u", false, "Upgrade bun")
 }

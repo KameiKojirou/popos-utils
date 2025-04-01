@@ -26,6 +26,8 @@ func MainMenu() {
 	}
 
 	switch choice {
+		case "bun":
+			BunMenu()
 		case "quit":
 			log.Info(lipgloss.NewStyle().Bold(true).Render("Goodbye!"))
 			os.Exit(0)

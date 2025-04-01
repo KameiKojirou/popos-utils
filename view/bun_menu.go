@@ -17,10 +17,11 @@ func BunMenu() {
 	form := huh.NewSelect[string]().
 	Title("Select an option").
 	Options(
-		huh.NewOption("install", "Install Bun"),
-		huh.NewOption("upgrade", "Upgrade Bun"),
-		huh.NewOption("uninstall", "Uninstall Bun"),
-		huh.NewOption("quit", "Quit"),
+		huh.NewOption("Install Bun", "install"),
+		huh.NewOption("Upgrade Bun", "upgrade"),
+		huh.NewOption("Uninstall Bun", "uninstall"),
+		huh.NewOption("Main Menu", "main"),
+		huh.NewOption("Quit", "quit"),
 	).
 	Value(&choice)
 
@@ -33,9 +34,11 @@ func BunMenu() {
 		case "install":
 			core.InstallBun()
 		case "upgrade":
-			// BunUpgrade()
+			core.BunUpgrade()
 		case "uninstall":
 			// BunUninstall()
+		case "main":
+			MainMenu()
 		case "q":
 			os.Exit(0)
 		default:
