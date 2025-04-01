@@ -7,6 +7,7 @@ import (
 	"fmt"
 
 	"github.com/KameiKojirou/popos-utils/core"
+	"github.com/KameiKojirou/popos-utils/view"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
@@ -25,6 +26,9 @@ var bunCmd = &cobra.Command{
 	`,
 	Run: func(cmd *cobra.Command, args []string) {
 		log.Info(lipgloss.NewStyle().Bold(true).Render(fmt.Sprintf("Is Bun installed: %v", core.BunInstallCheck())))
+		if len (args) == 0 {
+			view.BunMenu()
+		}
 		if cmd.Flags().Changed("install") {
 			core.InstallBun()
 		} else if cmd.Flags().Changed("upgrade") {
