@@ -16,6 +16,7 @@ func MainMenu() {
 	Title("Select an option").
 	Options(
 		huh.NewOption("Bun", "bun"),
+		huh.NewOption("Rust", "rust"),
 		huh.NewOption("Quit", "quit"),
 	).
 	Value(&choice)
@@ -28,6 +29,8 @@ func MainMenu() {
 	switch choice {
 		case "bun":
 			BunMenu()
+		case "rust":
+			RustMenu()
 		case "quit":
 			log.Info(lipgloss.NewStyle().Bold(true).Render("Goodbye!"))
 			os.Exit(0)
